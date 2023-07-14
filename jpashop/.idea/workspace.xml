@@ -32,6 +32,14 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -45,6 +53,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -79,7 +88,7 @@
   </component>
   <component name="RunManager" selected="Spring Boot.JpashopApplication">
     <configuration name="JpashopApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="jpashop.jpashop.main~1" />
+      <module name="jpashop" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="jpabook.jpashop.JpashopApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,7 +122,7 @@
       <option name="presentableId" value="Default" />
       <updated>1691324590782</updated>
       <workItem from="1691324592029" duration="889000" />
-      <workItem from="1691325523751" duration="655000" />
+      <workItem from="1691325523751" duration="1703000" />
     </task>
     <servers />
   </component>
