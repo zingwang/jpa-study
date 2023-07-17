@@ -19,7 +19,7 @@ public class OrderItem {
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name="order_item_id")
+    @JoinColumn(name="order_id")
     private Order order;
     private int orderPrice; // 주문가격
     private int count; // 주문 수량
