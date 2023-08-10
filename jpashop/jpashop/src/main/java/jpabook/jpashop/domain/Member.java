@@ -23,6 +23,7 @@ public class Member {
 
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy="member")//읽기전용
     private List<Order> orders = new ArrayList<>();
 
