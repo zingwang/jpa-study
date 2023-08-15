@@ -34,3 +34,16 @@
 2. 필요 시 페치 조인으로 성능을 최적화 
 3. DTO로 직접 조회하는 방법
 4. 최후의 방법은 JPA가 제공하는 네이티브 SQL이나 스프링 JDBC Template을 사용해서 SQL을 직접 사용
+
+###### 한계돌파
+> 페이징+ 컬렉션 엔티티<br>
+ToOne( OneToOne, ManyToOne) 관계 모두 페치조인 <br>
+ToOne 관계는 row수를 증가시키지 않으므로 페이징 쿼리에 영향X<br>
+컬레션은 지연로딩으로 조회<br>
+지연 로딩 성능최적화에는 <br>
+hibernate.default_batch_fetch_size, @BatchSize를 적용 > 설정size만큼 IN 쿼리조회<br>
+hibernate.default_batch_fetch_size 글로벌 설정<br>
+@BatchSize: 개별최적화 <br>
+
+- 쿼리 호출 수 1+N -> 1 + 1 로 최적화, 페이징이 가능
+- ToOne 관계는 페치 조인해도 페이징 영향 없으므로 쿼리수를 줄이고 나머지는 설정으로 최적화
