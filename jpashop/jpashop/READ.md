@@ -47,3 +47,5 @@ hibernate.default_batch_fetch_size 글로벌 설정<br>
 
 - 쿼리 호출 수 1+N -> 1 + 1 로 최적화, 페이징이 가능
 - ToOne 관계는 페치 조인해도 페이징 영향 없으므로 쿼리수를 줄이고 나머지는 설정으로 최적화
+
+- ToOne 관계들을 먼저조회하고 ToMany 관계는 각각 별도로 처리 (ToMany 관계는 조인하면 row수 증가하므로)
