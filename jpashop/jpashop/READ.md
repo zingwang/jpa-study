@@ -49,3 +49,19 @@ hibernate.default_batch_fetch_size 글로벌 설정<br>
 - ToOne 관계는 페치 조인해도 페이징 영향 없으므로 쿼리수를 줄이고 나머지는 설정으로 최적화
 
 - ToOne 관계들을 먼저조회하고 ToMany 관계는 각각 별도로 처리 (ToMany 관계는 조인하면 row수 증가하므로)
+
+###### API 개발 고급 정리
+- 엔티티조회, DTO 직접조회
+
+권장순서 
+1. 엔티티 조회 방식으로 우선 접근
+   1. 페치 조인으로 쿼리수 최적화
+   2. 컬렉션 최적화
+      1. 페이징 필요 시 hibernate.default_batch_fetch_size, @BatchSize 로 최적화
+      2. 페이징 필요X -> 페치조인
+2. 엔티티 조회 방식으로 해결이 되지않으면 DTO 조회방식
+3. DTO 조회 방식으로 해결이 안되면 'NativeSQL' or 스프링 'JdbcTemplate'
+
+
+
+
