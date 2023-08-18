@@ -62,6 +62,13 @@ hibernate.default_batch_fetch_size 글로벌 설정<br>
 2. 엔티티 조회 방식으로 해결이 되지않으면 DTO 조회방식
 3. DTO 조회 방식으로 해결이 안되면 'NativeSQL' or 스프링 'JdbcTemplate'
 
+###### OSIV
 
+- 커멘드와 쿼리 분리
+- 실무에서 OSIV를 끈 상태로 복잡성을 관리하는 방법으로 Command와 Query를 분리 
+exam
+> OrderService
+OrderService: 핵심 비즈니스 로직
+OrderQueryService: 화면이나 API에 맞춘 서비스 (주로 읽기 전용 트랜잭션 사용)
 
-
+* 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에 서는 OSIV를 키는 것도 방법 
