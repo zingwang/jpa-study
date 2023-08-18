@@ -8,6 +8,8 @@ import jpabook.jpashop.repository.OrderQueryRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
 import jpabook.jpashop.repository.OrderSimpleQueryRepository;
+import jpabook.jpashop.repository.order.query.OrderFlatDto;
+import jpabook.jpashop.repository.order.query.OrderItemQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryDto;
 import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.Data;
@@ -21,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -84,6 +86,28 @@ public class OrderApiController {
     public List<OrderQueryDto> ordersV5() {
         List<OrderQueryDto> result = orderQueryRepository.findAllByDto_optimization();
         return result;
+    }
+
+    @GetMapping("/api/v6/orders")
+    public List<OrderFlatDto> ordersV6() {
+        List<OrderFlatDto> result = orderQueryRepository.findAllByDto_flat();
+        return result;
+    }
+
+    @GetMapping("/api/v6.1/orders")
+    public List<OrderQueryDto> ordersV6_dto() {
+        List<OrderFlatDto> flats = orderQueryRepository.findAllByDto_flat();
+        // OrderFlatDto ->  OrderQueryDto 스펙으로 변경해서 출력
+        return flats.stream()
+                .collect(groupingBy(o -> new OrderQueryDto(o.getOrderId(),
+                                o.getName(), o.getOrderDate(), o.getOrderStatus(), o.getAddress()),
+                        mapping(o -> new OrderItemQueryDto(o.getOrderId(),
+                                o.getItemName(), o.getOrderPrice(), o.getCount()), toList())
+                )).entrySet().stream()
+                .map(e -> new OrderQueryDto(e.getKey().getOrderId(),
+                        e.getKey().getName(), e.getKey().getOrderDate(), e.getKey().getOrderStatus(),
+                        e.getKey().getAddress()))
+                .collect(toList());
     }
     @Data
     static class OrderDto{
