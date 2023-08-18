@@ -72,3 +72,7 @@ OrderService: 핵심 비즈니스 로직
 OrderQueryService: 화면이나 API에 맞춘 서비스 (주로 읽기 전용 트랜잭션 사용)
 
 * 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에 서는 OSIV를 키는 것도 방법 
+
+
+###### 스프링 데이터 JPA
+- JpaRepository 인터페이스를 제공하여 기본적인 CRUD 기능이 모두 제공됨.
