@@ -1,0 +1,14 @@
+#### 스프링 데이터 JPA 정리
+
+공통인터페이스 구성
+> - 스프링데이터 <br>
+> :Repository <- CrudRepository <- PagingAndSortingRepository <br>
+> - 스프링데이터 JPA <br>
+> :JpaRepository
+
+"제네릭타입"
+T: 엔티티, ID: 엔티티의 식별자타입, S: 엔티티와 그 자식의 타입
+
+"주요메서드"
+save(S), delete(T), findById(ID), getOne(ID), findAll(...)
+
