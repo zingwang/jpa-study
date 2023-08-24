@@ -75,4 +75,7 @@ class MemberJpaRepositoryTest {
         assertEquals(result.get(0).getUsername(),"AAA");
         assertEquals(result.get(0),m1);
     }
+
+
+
 }
