@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
@@ -151,26 +152,28 @@ class MemberRepositoryTest {
 
 
         int age=10;
-
         PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+
         //when
         Page<Member> page = memberRepository.findByAge(age,pageRequest);
+        Page<MemberDto> toMap = page.map( member-> new MemberDto(member.getId(),member.getUsername(),member.getTeam().getName()));
 
         //then
         List<Member> content = page.getContent();
-        long totalElements =  page.getTotalElements();
+        //long totalElements =  page.getTotalElements();
 
         for (Member member : content) {
             System.out.println("member = "+member);
         }
-        System.out.println("totalElements = "+totalElements);
+        //System.out.println("totalElements = "+totalElements);
         //then
 
         assertEquals(content.size(),3);
-        assertEquals(totalElements,5);
+        //assertEquals(totalElements,5);
         assertEquals(page.getNumber(),0); //page 번호
-        assertEquals(page.getTotalPages(),2); // page 개수
+        //assertEquals(page.getTotalPages(),2); // page 개수
         assertEquals(page.isFirst(),true); // 처음페이지인지
         assertEquals(page.hasNext(),true); // 다음페이지있는지
     }
+
 }

@@ -29,6 +29,7 @@ save(S), delete(T), findById(ID), getOne(ID), findAll(...)
 ###### 페이징과 정렬 파라미터
 - org.springframework.data.domain.Sort : 정렬 기능
 - org.springframework.data.domain.Pageable : 페이징 기능 (내부에 Sort 포함)
+- CountQuery와 Query분리 가능(복잡한 로직인 경우 분리적용)
 
 ###### 특별한 반환 타입 (모바일에 주로 쓰이는)
 - org.springframework.data.domain.Page : 추가 count 쿼리 결과를 포함하는 페이징
