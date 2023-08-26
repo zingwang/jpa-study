@@ -35,3 +35,7 @@ save(S), delete(T), findById(ID), getOne(ID), findAll(...)
 - org.springframework.data.domain.Page : 추가 count 쿼리 결과를 포함하는 페이징
 - org.springframework.data.domain.Slice : 추가 count 쿼리 없이 다음 페이지만 확인 가능(내부적으로 limit + 1조회)
 List (자바 컬렉션): 추가 count 쿼리 없이 결과만 반환
+
+###### 벌크성 수정 쿼리
+
+벌크 연산 이후 조회를 할 경우: 영속성 컨텍스트를 clear하거나 clearAutomatically = true 설정으로 초기화 필요

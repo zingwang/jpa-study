@@ -1,5 +1,6 @@
 package study.datajpa.repository;
 
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,9 @@ class MemberRepositoryTest {
 
     @Autowired
     TeamRepository teamRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     public void testMember(){
@@ -175,5 +179,30 @@ class MemberRepositoryTest {
         assertEquals(page.isFirst(),true); // 처음페이지인지
         assertEquals(page.hasNext(),true); // 다음페이지있는지
     }
+
+    @Test
+    public void bulkUpdate(){
+        //given
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 13));
+        memberRepository.save(new Member("member3", 20));
+        memberRepository.save(new Member("member4", 25));
+        memberRepository.save(new Member("member5", 35));
+
+        //when
+        int resultCount = memberRepository.bulkAgePlus(20);
+
+        //entityManager.flush(); // 변경내용반영
+        //entityManager.clear();
+
+
+        List<Member> result=memberRepository.findByUsername("member5");
+
+        Member member5 = result.get(0);
+        System.out.println("member5 = "+member5); // 영속성을 날리지 않으면 36이아닌 35로출력되므로 clear나 clearAutomarically필요
+        //then
+        assertEquals(resultCount,3);
+    }
+
 
 }
