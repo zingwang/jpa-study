@@ -23,3 +23,14 @@ save(S), delete(T), findById(ID), getOne(ID), findAll(...)
 
 - 컬렉션 파라미터 바인딩: in절 지원
 - 반환타입이 유연
+
+
+###### 스프링데이터 JPA 페이징과 정렬
+###### 페이징과 정렬 파라미터
+- org.springframework.data.domain.Sort : 정렬 기능
+- org.springframework.data.domain.Pageable : 페이징 기능 (내부에 Sort 포함)
+
+###### 특별한 반환 타입 (모바일에 주로 쓰이는)
+- org.springframework.data.domain.Page : 추가 count 쿼리 결과를 포함하는 페이징
+- org.springframework.data.domain.Slice : 추가 count 쿼리 없이 다음 페이지만 확인 가능(내부적으로 limit + 1조회)
+List (자바 컬렉션): 추가 count 쿼리 없이 결과만 반환

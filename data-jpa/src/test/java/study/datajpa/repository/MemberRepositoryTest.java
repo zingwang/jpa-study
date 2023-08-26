@@ -3,6 +3,9 @@ package study.datajpa.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
@@ -136,8 +139,38 @@ class MemberRepositoryTest {
         }
     }
 
-    @Test
-    public void returnType() {
 
+    @Test
+    public void paging(){
+        //given
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 10));
+        memberRepository.save(new Member("member3", 10));
+        memberRepository.save(new Member("member4", 10));
+        memberRepository.save(new Member("member5", 10));
+
+
+        int age=10;
+
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+        //when
+        Page<Member> page = memberRepository.findByAge(age,pageRequest);
+
+        //then
+        List<Member> content = page.getContent();
+        long totalElements =  page.getTotalElements();
+
+        for (Member member : content) {
+            System.out.println("member = "+member);
+        }
+        System.out.println("totalElements = "+totalElements);
+        //then
+
+        assertEquals(content.size(),3);
+        assertEquals(totalElements,5);
+        assertEquals(page.getNumber(),0); //page 번호
+        assertEquals(page.getTotalPages(),2); // page 개수
+        assertEquals(page.isFirst(),true); // 처음페이지인지
+        assertEquals(page.hasNext(),true); // 다음페이지있는지
     }
 }
