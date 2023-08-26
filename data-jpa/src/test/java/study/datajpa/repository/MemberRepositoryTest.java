@@ -135,4 +135,9 @@ class MemberRepositoryTest {
             System.out.println("member = "+m);
         }
     }
+
+    @Test
+    public void returnType() {
+
+    }
 }

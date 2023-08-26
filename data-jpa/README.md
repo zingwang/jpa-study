@@ -22,3 +22,4 @@ save(S), delete(T), findById(ID), getOne(ID), findAll(...)
 
 
 - 컬렉션 파라미터 바인딩: in절 지원
+- 반환타입이 유연

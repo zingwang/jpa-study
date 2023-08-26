@@ -7,6 +7,7 @@ import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
@@ -30,4 +31,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //콜렉션 리스트
     @Query("select m from Member m where m.username in :names")
     List<Member> findByNames(@Param("names") List<String> names);
+
+
+
+
 }
