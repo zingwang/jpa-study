@@ -40,4 +40,6 @@ List (자바 컬렉션): 추가 count 쿼리 없이 결과만 반환
 
 벌크 연산 이후 조회를 할 경우: 영속성 컨텍스트를 clear하거나 clearAutomatically = true 설정으로 초기화 필요
 
-###### 
+###### 새로운 엔티티 구별
+@GeneratedValue면 새로운 엔티티로 인식하나 @Id만 사용하면 merge()호출.
+Persistable를 사용하여 새로운 엔티티 확인 여부를 직접 구현
