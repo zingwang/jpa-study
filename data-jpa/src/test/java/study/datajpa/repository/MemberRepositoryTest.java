@@ -283,4 +283,29 @@ class MemberRepositoryTest {
         List<Member> result= memberRepository.findMEmberCustom();
     }
 
+    @Test
+    public void projections(){
+
+        //given
+        Team teamA = new Team("teamA");
+        entityManager.persist(teamA);
+
+        Member m1= new Member("m1", 0 , teamA);
+        Member m2= new Member("m2", 0 , teamA);
+
+        entityManager.persist(m1);
+        entityManager.persist(m2);
+
+        entityManager.flush();
+        entityManager.clear();
+
+        //when
+        List<UsernameOnly> result = memberRepository.findProjectionsByUsername("m1");
+
+        for (UsernameOnly usernameOnly : result){
+            System.out.println("usernameOnly = " + usernameOnly);
+        }
+
+    }
+
 }

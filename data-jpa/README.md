@@ -43,3 +43,7 @@ List (자바 컬렉션): 추가 count 쿼리 없이 결과만 반환
 ###### 새로운 엔티티 구별
 @GeneratedValue면 새로운 엔티티로 인식하나 @Id만 사용하면 merge()호출.
 Persistable를 사용하여 새로운 엔티티 확인 여부를 직접 구현
+
+
+######  Projections
+- 엔티티 대신 DTO 편리하게 조회 할 때 사용
