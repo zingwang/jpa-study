@@ -300,10 +300,10 @@ class MemberRepositoryTest {
         entityManager.clear();
 
         //when
-        List<UsernameOnly> result = memberRepository.findProjectionsByUsername("m1");
+        List<UsernameOnlyDto> result = memberRepository.findProjectionsByUsername("m1");
 
-        for (UsernameOnly usernameOnly : result){
-            System.out.println("usernameOnly = " + usernameOnly);
+        for (UsernameOnlyDto usernameOnlyDto : result){
+            System.out.println("usernameOnlyDto = " + usernameOnlyDto);
         }
 
     }
