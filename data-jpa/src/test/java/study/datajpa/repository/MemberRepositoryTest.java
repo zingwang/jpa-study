@@ -300,10 +300,12 @@ class MemberRepositoryTest {
         entityManager.clear();
 
         //when
-        List<UsernameOnlyDto> result = memberRepository.findProjectionsByUsername("m1");
+        List<NestedClosedProjections> result = memberRepository.findProjectionsByUsername("m1",NestedClosedProjections.class);
 
-        for (UsernameOnlyDto usernameOnlyDto : result){
-            System.out.println("usernameOnlyDto = " + usernameOnlyDto);
+
+        //중첩구조로 TeamInfo는 최적화 X
+        for (NestedClosedProjections nestedClosedProjections : result){
+            System.out.println("nestedClosedProjections = " + nestedClosedProjections);
         }
 
     }
